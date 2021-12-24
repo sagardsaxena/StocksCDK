@@ -25,17 +25,24 @@ jobs:
         with: 
           repository: sagardsaxena/StocksReactApp
           path: ./StocksReactApp
-          
 
-      # Runs a single command using the runners shell
-      - name: Get current directory
-        run: pwd
+      # Install AWS cdk
+      - name: Install cdk
+        run: npm install -g aws-cdk
 
-      # Runs a set of commands using the runners shell
-      - name: List current directory
+      # Build CDK
+      - name: Build CDK
         run: |
-          ls
-          echo "Break"
-          ls StocksCDK
-          echo "Break"
-          ls StocksReactApp
+          cd StocksCDK
+          npm install
+          npm run build
+          cd ..
+
+      # Build React App
+      - name: Build CDK
+        run: |
+          cd StocksReactApp
+          npm install
+          npm run build
+          cd ..
+          
