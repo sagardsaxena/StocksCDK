@@ -5,10 +5,8 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: []
   pull_request:
-    branches: []
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,8 +20,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out CDK Repository
       - uses: actions/checkout@v2
+        with: 
+          repository: sagardsaxena/StocksCDK
+          path: ./StocksCDK
+
+      # Checks-out ReactApp Repository
+      - uses: actions/checkout@v2
+        with: 
+          repository: sagardsaxena/StocksReactApp
+          path: ./StocksReactApp
+          
 
       # Runs a single command using the runners shell
       - name: Get current directory
@@ -32,5 +40,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Clone website directory
         run: |
-          cd ..
-          git clone git@github.com:sagardsaxena/StocksReactApp.git
+          pwd
