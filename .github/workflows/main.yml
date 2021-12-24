@@ -30,6 +30,10 @@ jobs:
       - name: Install cdk
         run: npm install -g aws-cdk
 
+      # Install AWS cdk
+      - name: Run aws command
+        run: aws
+
       # Build CDK
       - name: Build CDK
         run: |
